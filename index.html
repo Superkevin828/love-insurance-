@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heart Break Insurance | Love may break your heart. We'll fix the rest.</title>
+<meta name="description" content="Heart Break Insurance: join today, and when love lets you down, claim ice cream, a luxury hotel stay, a spa day and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Design tokens ===== */
+:root{
+  --pink:#ffe3ee; --pink-2:#ffc2d9; --rose:#e8386d; --red:#c8143f;
+  --purple:#6d3ab7; --purple-soft:#efe6fb; --ink:#2b1638; --muted:#5d4a6b;
+  --white:#fff; --radius:24px;
+  --shadow:0 10px 30px rgba(109,58,183,.12);
+  --shadow-hover:0 18px 40px rgba(200,20,63,.20);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--white);line-height:1.65;font-size:1.05rem;overflow-x:hidden}
+h1,h2,h3{font-family:'Fredoka',system-ui,sans-serif;line-height:1.15;color:var(--ink)}
+h2{font-size:clamp(1.9rem,6vw,2.7rem);text-align:center;margin-bottom:.5rem}
+.sub{text-align:center;color:var(--muted);max-width:34rem;margin:0 auto 2.5rem}
+section{padding:4.5rem 1.25rem}
+.wrap{max-width:1080px;margin:0 auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--purple);outline-offset:3px;border-radius:8px}
+
+/* ===== Buttons ===== */
+.btn{display:inline-block;font:600 1.05rem 'Fredoka',sans-serif;text-decoration:none;border:0;cursor:pointer;
+  padding:.85rem 1.8rem;border-radius:999px;color:#fff;background:linear-gradient(135deg,var(--rose),var(--red));
+  box-shadow:0 8px 20px rgba(200,20,63,.3);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 28px rgba(200,20,63,.4)}
+.btn.small{padding:.5rem 1.2rem;font-size:.95rem}
+
+/* ===== Navbar ===== */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--pink)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.25rem;position:relative}
+.logo{font:700 1.3rem 'Fredoka',sans-serif;text-decoration:none;color:var(--red);display:flex;align-items:center;gap:.4rem}
+.menu{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:1rem 1.25rem;gap:.9rem;border-bottom:1px solid var(--pink);box-shadow:var(--shadow)}
+.menu.open{display:flex}
+.menu a{text-decoration:none;font-weight:500}
+.menu a:not(.btn):hover{color:var(--rose)}
+.burger{background:none;border:0;font-size:1.7rem;cursor:pointer;color:var(--purple)}
+@media(min-width:820px){
+  .burger{display:none}
+  .menu{display:flex;position:static;flex-direction:row;align-items:center;padding:0;gap:1.6rem;border:0;box-shadow:none;background:none}
+}
+
+/* ===== Hero ===== */
+.hero{position:relative;text-align:center;padding:4rem 1.25rem 5rem;background:radial-gradient(circle at 20% 10%,var(--pink) 0,transparent 45%),radial-gradient(circle at 85% 80%,var(--purple-soft) 0,transparent 45%),#fff;overflow:hidden}
+.hero .wrap{position:relative;z-index:2}
+.hero h1{font-size:clamp(2.4rem,9vw,4.4rem);max-width:15ch;margin:1rem auto;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{max-width:30rem;margin:0 auto 2rem;color:var(--muted);font-size:1.15rem}
+.broken{width:150px;height:auto;margin:0 auto;display:block;animation:beat 2.2s ease-in-out infinite;filter:drop-shadow(0 12px 14px rgba(200,20,63,.3))}
+@keyframes beat{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.07) rotate(3deg)}}
+.floaters{position:absolute;inset:0;z-index:1;pointer-events:none}
+.floaters span{position:absolute;bottom:-40px;opacity:.55;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+
+/* ===== Cards (services) ===== */
+.grid{display:grid;gap:1.25rem;grid-template-columns:1fr}
+@media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{background:#fff;border:2px solid var(--pink);border-radius:var(--radius);padding:1.8rem;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{transform:translateY(-8px) rotate(-.6deg);box-shadow:var(--shadow-hover);border-color:var(--pink-2)}
+.card .emoji{display:grid;place-items:center;width:64px;height:64px;font-size:2rem;border-radius:20px;background:var(--pink);margin-bottom:1rem}
+.card:nth-child(even) .emoji{background:var(--purple-soft)}
+.card h3{font-size:1.3rem;margin-bottom:.4rem}
+.card p{color:var(--muted)}
+#services{background:linear-gradient(#fff,var(--pink) 130%)}
+
+/* ===== Pricing ===== */
+.price-card{max-width:440px;margin:0 auto;text-align:center;background:#fff;border-radius:32px;padding:2.5rem 1.75rem;border:3px solid var(--rose);box-shadow:var(--shadow-hover);position:relative}
+.price-card .tag{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;font:600 .9rem 'Fredoka',sans-serif;padding:.3rem 1rem;border-radius:999px;white-space:nowrap}
+.price-row{padding:1rem 0;border-bottom:2px dashed var(--pink-2)}
+.price-row:last-of-type{border:0;margin-bottom:1rem}
+.price-row small{display:block;color:var(--muted)}
+.amount{font:700 2.3rem 'Fredoka',sans-serif;color:var(--red)}
+.amount span{font-size:1.1rem;color:var(--purple)}
+.price-card ul{list-style:none;text-align:left;margin:1rem 0 1.6rem}
+.price-card li{padding:.25rem 0}
+.price-card li::before{content:"💖 "}
+
+/* ===== How it works ===== */
+#how{background:var(--purple-soft)}
+.steps{list-style:none;counter-reset:s;display:grid;gap:1.25rem}
+@media(min-width:760px){.steps{grid-template-columns:repeat(4,1fr)}}
+.steps li{counter-increment:s;background:#fff;border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);position:relative}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--rose);color:#fff;font:700 1.2rem 'Fredoka',sans-serif;margin-bottom:.8rem}
+.steps h3{font-size:1.2rem;margin-bottom:.3rem}
+.steps p{color:var(--muted);font-size:.98rem}
+
+/* ===== Testimonials ===== */
+blockquote{background:#fff;border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow);border-left:6px solid var(--rose);height:100%}
+blockquote p{margin-bottom:.8rem}
+blockquote footer{font-weight:700;color:var(--purple)}
+blockquote footer span{display:block;font-weight:400;color:var(--muted);font-size:.9rem}
+.stars{color:#e8a200;letter-spacing:2px}
+
+/* ===== FAQ ===== */
+.faq{max-width:720px;margin:0 auto}
+details{background:#fff;border:2px solid var(--pink);border-radius:18px;margin-bottom:.9rem;transition:border-color .2s,box-shadow .2s}
+details[open]{border-color:var(--rose);box-shadow:var(--shadow)}
+summary{cursor:pointer;padding:1.1rem 1.3rem;font:600 1.1rem 'Fredoka',sans-serif;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--rose);font-size:1.5rem;line-height:1}
+details[open] summary::after{content:"–"}
+details p{padding:0 1.3rem 1.2rem;color:var(--muted)}
+
+/* ===== Sign-up ===== */
+#join{background:linear-gradient(160deg,var(--pink),var(--purple-soft))}
+.form-card{max-width:480px;margin:0 auto;background:#fff;border-radius:28px;padding:2rem 1.6rem;box-shadow:var(--shadow-hover)}
+label{display:block;font-weight:700;margin:1rem 0 .3rem}
+input{width:100%;font:inherit;padding:.8rem 1rem;border:2px solid var(--pink-2);border-radius:14px;background:#fff;color:var(--ink)}
+input:focus{border-color:var(--purple);outline:none;box-shadow:0 0 0 4px var(--purple-soft)}
+.form-card .btn{width:100%;margin-top:1.5rem}
+.thanks{text-align:center}
+.thanks .big{font-size:3.5rem;animation:beat 1.6s ease-in-out infinite}
+[hidden]{display:none!important}
+
+/* ===== Footer ===== */
+footer.site{background:var(--ink);color:#f3e9fa;padding:3rem 1.25rem 2rem;text-align:center}
+footer.site a{color:#ffc2d9}
+.socials{display:flex;justify-content:center;gap:.8rem;margin:1.2rem 0}
+.socials a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);font-size:1.3rem;text-decoration:none;transition:transform .2s,background .2s}
+.socials a:hover{transform:translateY(-4px);background:var(--rose)}
+.fine{font-size:.85rem;opacity:.8;margin-top:1rem}
+
+/* ===== Pop-up (welcome + sign-up) ===== */
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:1.25rem;background:rgba(43,22,56,.55);backdrop-filter:blur(4px);animation:fade .25s}
+.modal-box{position:relative;width:100%;max-width:420px;text-align:center;background:#fff;border-radius:28px;padding:2.2rem 1.6rem 1.8rem;border:3px solid var(--rose);box-shadow:0 24px 60px rgba(0,0,0,.3);animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
+.modal-box .big{font-size:3.4rem;animation:beat 1.6s ease-in-out infinite}
+.modal-box h3{font-size:1.6rem;margin:.3rem 0 .5rem}
+.modal-box p{color:var(--muted);margin-bottom:1.2rem}
+.modal .close{position:absolute;top:.6rem;right:.9rem;background:none;border:0;font-size:2rem;line-height:1;cursor:pointer;color:var(--purple)}
+.actions{display:flex;flex-direction:column;gap:.7rem}
+.btn.alt{background:#fff;color:var(--purple);border:2px solid var(--purple);box-shadow:none}
+.confetti{position:fixed;top:-30px;z-index:101;pointer-events:none;animation:fall linear forwards}
+@keyframes fade{from{opacity:0}}
+@keyframes pop{from{transform:scale(.7);opacity:0}}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Sticky navbar ===== -->
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Heart Break Insurance home"><span aria-hidden="true">💔</span> Heart Break Insurance</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu">☰</button>
+    <nav class="menu" id="menu" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn small" href="#join">Join now</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="floaters" id="floaters" aria-hidden="true"></div>
+  <div class="wrap">
+    <!-- Cracked heart with a plaster, because we fix things -->
+    <svg class="broken" viewBox="0 0 120 110" role="img" aria-label="A cute heart with a bandage on it">
+      <defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5c8a"/><stop offset="1" stop-color="#c8143f"/></linearGradient></defs>
+      <path d="M60 104C20 72 4 52 4 32 4 16 16 6 31 6c12 0 22 6 29 16C67 12 77 6 89 6c15 0 27 10 27 26 0 20-16 40-56 72z" fill="url(#hg)"/>
+      <path d="M60 22l-9 16 12 12-10 16" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>
+      <g transform="rotate(-35 78 64)"><rect x="52" y="54" width="52" height="20" rx="10" fill="#ffd9a8"/><circle cx="68" cy="64" r="1.7" fill="#d9a066"/><circle cx="78" cy="64" r="1.7" fill="#d9a066"/><circle cx="88" cy="64" r="1.7" fill="#d9a066"/></g>
+    </svg>
+    <h1>Love may break your heart. <em>We'll fix the rest.</em></h1>
+    <p>Pay a small premium while you're happy. Claim big when you're not. Ice cream, hotels, spa days and a best friend on speed dial are all on us.</p>
+    <a class="btn" href="#join">Join now</a>
+  </div>
+</section>
+
+<!-- ===== Services ===== -->
+<section id="services">
+  <div class="wrap">
+    <h2>What your cover includes</h2>
+    <p class="sub">Five ways we help you go from "why me?" to "who needs them?"</p>
+    <div class="grid">
+      <article class="card"><div class="emoji" aria-hidden="true">🍦</div><h3>All-expenses ice cream and junk food</h3><p>Pizza, chips, chocolate, ice cream by the bucket. Calories don't count during a claim. That's in the policy.</p></article>
+      <article class="card"><div class="emoji" aria-hidden="true">🏨</div><h3>VIP hotel stay</h3><p>A fully covered 3-night luxury hotel getaway. Fluffy robes, room service and a pillow menu.</p></article>
+      <article class="card"><div class="emoji" aria-hidden="true">👯</div><h3>24/7 best friend session</h3><p>A professional listener who says "you deserve better" at any hour, with feeling.</p></article>
+      <article class="card"><div class="emoji" aria-hidden="true">💆</div><h3>Full-body massage and facial</h3><p>Be glowing, relaxed and a solid 10/10 by the time your ex checks your profile.</p></article>
+      <article class="card"><div class="emoji" aria-hidden="true">🎬</div><h3>Sad movie package</h3><p>A full Netflix subscription and a tissue box for the weepy films. Pick one and have a good cry.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Pricing ===== -->
+<section id="pricing">
+  <div class="wrap">
+    <h2>Simple pricing, zero heartache</h2>
+    <p class="sub">Less than the cost of a dramatic text to your ex.</p>
+    <div class="price-card">
+      <span class="tag">Full heartbreak cover</span>
+      <div class="price-row"><small>Registration fee (one-time)</small><div class="amount">UGX 100,000</div></div>
+      <div class="price-row"><small>Monthly premium</small><div class="amount">UGX 60,000 <span>/ month</span></div></div>
+      <ul>
+        <li>Ice cream and junk food</li>
+        <li>3-night VIP hotel stay</li>
+        <li>24/7 best friend session</li>
+        <li>Massage and facial</li>
+        <li>Sad movie package</li>
+      </ul>
+      <a class="btn" href="#join">Get covered</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== How it works ===== -->
+<section id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="sub">Four steps, and only one of them hurts.</p>
+    <ol class="steps">
+      <li><h3>Register</h3><p>Sign up and pay the one-time UGX 100,000 fee. You are now officially protected.</p></li>
+      <li><h3>Pay monthly</h3><p>Pay UGX 60,000 each month. Think of it as paying for future you's comfort.</p></li>
+      <li><h3>Get heartbroken</h3><p>It happens to the best of us. Cry a little. We're already getting the tissues.</p></li>
+      <li><h3>Claim your cover</h3><p>Tell us what happened and we start the pampering. No lectures, no judgment.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== Testimonials ===== -->
+<section id="reviews">
+  <div class="wrap">
+    <h2>Happy (formerly heartbroken) members</h2>
+    <p class="sub">All reviews are made up, but the feelings are very real.</p>
+    <div class="grid">
+      <blockquote><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>"He left me on read at 9pm. By 11pm I was in a hotel robe eating cake. I'd get dumped again. (Please don't tell my boyfriend.)"</p><footer>Amina K.<span>Claimed twice, thriving</span></footer></blockquote>
+      <blockquote><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>"My best friend session lasted six hours and I learned my ex was 'a red flag with a haircut.' Worth every shilling."</p><footer>Brian M.<span>Now emotionally unbothered</span></footer></blockquote>
+      <blockquote><div class="stars" aria-label="5 out of 5 stars">★★★★☆</div><p>"The facial was amazing. I only took off one star because the sad movie made me cry harder than the breakup."</p><footer>Grace N.<span>Professional crier</span></footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" style="background:var(--pink)">
+  <div class="wrap">
+    <h2>Questions people ask us</h2>
+    <p class="sub">Yes, we've heard them all.</p>
+    <div class="faq">
+      <details><summary>Does a one-sided crush count?</summary><p>If you were truly in love and they never knew, we respect the pain. A crush claim gets the ice cream and the best friend session, but not the hotel. We have to stay in business.</p></details>
+      <details><summary>How do I prove my heart is broken?</summary><p>Our Certified Heartbreak Assessors accept a sad playlist, a long text you didn't send, or a sigh of at least four seconds. Dramatic eye rolls are scored extra.</p></details>
+      <details><summary>Can I claim for a breakup I caused?</summary><p>Yes. Dumping someone is sad too. We still cover you, but the best friend may ask questions.</p></details>
+      <details><summary>What if I fall back in love with my ex?</summary><p>Your cover keeps going. We'll gently suggest a second best friend session first, just to be safe.</p></details>
+      <details><summary>How soon can I make a claim?</summary><p>Straight after registration. We believe heartbreak doesn't wait for paperwork.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Sign-up ===== -->
+<section id="join">
+  <div class="wrap">
+    <h2>Join before love finds you</h2>
+    <p class="sub">Fill in your details and our team will call you about your registration.</p>
+    <div class="form-card">
+      <form id="signup" novalidate>
+        <label for="name">Full name</label>
+        <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+        <label for="phone">Phone number</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="e.g. 0700 000 000" required>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        <p id="err" role="alert" style="color:var(--red);font-weight:700;margin-top:.8rem" hidden></p>
+        <button class="btn" type="submit">Get covered</button>
+      </form>
+      <div class="thanks" id="thanks" hidden aria-live="polite">
+        <div class="big" aria-hidden="true">💖</div>
+        <h3 id="thanksTitle">Welcome!</h3>
+        <p>You're officially covered. Our team will contact you soon. Until then, please stay single-ish and happy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="site">
+  <p class="logo" style="justify-content:center;color:#fff"><span aria-hidden="true">💔</span> Heart Break Insurance</p>
+  <p>Fixing hearts one ice cream at a time.</p>
+  <p>📞 <a href="tel:+256703666708">0703666708</a> &nbsp;|&nbsp; 💬 <a href="https://wa.me/256703666708">WhatsApp us</a><br>✉️ <a href="mailto:lyavalakevin@gmail.com">lyavalakevin@gmail.com</a><br>📍 Uganda</p>
+  <div class="socials">
+    <a href="#" aria-label="Facebook">📘</a>
+    <a href="#" aria-label="Instagram">📸</a>
+    <a href="#" aria-label="X (Twitter)">🐦</a>
+    <a href="#" aria-label="TikTok">🎵</a>
+  </div>
+  <p class="fine">© <span id="yr"></span> Heart Break Insurance. A fun, fictional company. Terms and conditions: we promise to care about your feelings.</p>
+</footer>
+
+<!-- ===== Pop-up (reused for the welcome offer and the sign-up thank-you) ===== -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" hidden>
+  <div class="modal-box">
+    <button class="close" id="mClose" aria-label="Close pop-up">×</button>
+    <div class="big" id="mEmoji" aria-hidden="true">💔</div>
+    <h3 id="mTitle"></h3>
+    <p id="mText"></p>
+    <div class="actions" id="mActions"></div>
+  </div>
+</div>
+
+<script>
+/* Mobile menu toggle */
+const burger = document.getElementById('burger'), menu = document.getElementById('menu');
+burger.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+menu.addEventListener('click', e => { if (e.target.tagName === 'A') { menu.classList.remove('open'); burger.setAttribute('aria-expanded', false); } });
+
+/* Floating hearts in the hero */
+const box = document.getElementById('floaters'), icons = ['💗','💖','💜','❤️','💕'];
+for (let i = 0; i < 14; i++) {
+  const s = document.createElement('span');
+  s.textContent = icons[i % icons.length];
+  s.style.left = Math.random() * 96 + '%';
+  s.style.fontSize = (16 + Math.random() * 26) + 'px';
+  s.style.animationDuration = (9 + Math.random() * 10) + 's';
+  s.style.animationDelay = (-Math.random() * 14) + 's';
+  box.appendChild(s);
+}
+
+/* Sign-up form: friendly thank-you, no backend */
+const form = document.getElementById('signup'), err = document.getElementById('err');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = form.name.value.trim(), phone = form.phone.value.trim(), email = form.email.value.trim();
+  if (!name || phone.replace(/\D/g, '').length < 9 || !/^\S+@\S+\.\S+$/.test(email)) {
+    err.textContent = 'Please add your name, a valid phone number and a valid email so we can reach you.';
+    err.hidden = false;
+    return;
+  }
+  err.hidden = true;
+  const first = name.split(' ')[0];
+  document.getElementById('thanksTitle').textContent = 'Welcome, ' + first + '!';
+  form.hidden = true;
+  document.getElementById('thanks').hidden = false;
+  signedUp = true;
+
+  /* No backend, so offer to send the details to the team by email or WhatsApp */
+  const msg = 'Hello Heart Break Insurance, I would like to register.\nName: ' + name + '\nPhone: ' + phone + '\nEmail: ' + email;
+  openModal({
+    emoji: '🎉', title: "You're in, " + first + '!',
+    text: 'Welcome to Heart Break Insurance. Tap below to send your details to our team so we can confirm your registration.',
+    actions: [
+      { label: '✉️ Email my details', href: 'mailto:lyavalakevin@gmail.com?subject=' + encodeURIComponent('New registration: ' + name) + '&body=' + encodeURIComponent(msg) },
+      { label: '💬 Send on WhatsApp', href: 'https://wa.me/256703666708?text=' + encodeURIComponent(msg), alt: true }
+    ]
+  });
+  confetti();
+});
+
+/* ===== Pop-up helpers ===== */
+let signedUp = false, lastFocus = null;
+const modal = document.getElementById('modal');
+
+function openModal(o) {
+  lastFocus = document.activeElement;
+  document.getElementById('mEmoji').textContent = o.emoji;
+  document.getElementById('mTitle').textContent = o.title;
+  document.getElementById('mText').textContent = o.text;
+  const acts = document.getElementById('mActions');
+  acts.innerHTML = '';
+  o.actions.forEach(a => {
+    const el = document.createElement('a');
+    el.className = 'btn' + (a.alt ? ' alt' : '');
+    el.href = a.href;
+    el.textContent = a.label;
+    if (a.href.startsWith('#')) el.addEventListener('click', closeModal);
+    else if (a.href.startsWith('http')) { el.target = '_blank'; el.rel = 'noopener'; }
+    acts.appendChild(el);
+  });
+  modal.hidden = false;
+  document.getElementById('mClose').focus();
+}
+function closeModal() {
+  modal.hidden = true;
+  if (lastFocus) lastFocus.focus();
+}
+document.getElementById('mClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+/* Burst of falling hearts for the sign-up celebration */
+function confetti() {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  for (let i = 0; i < 40; i++) {
+    const c = document.createElement('span');
+    c.className = 'confetti';
+    c.textContent = icons[i % icons.length];
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.fontSize = (16 + Math.random() * 20) + 'px';
+    c.style.animationDuration = (2.5 + Math.random() * 2.5) + 's';
+    c.style.animationDelay = (Math.random() * 0.8) + 's';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 6500);
+  }
+}
+
+/* Welcome offer: shows once per visit after a few seconds, unless they've already signed up */
+setTimeout(() => {
+  let seen = false;
+  try { seen = sessionStorage.getItem('hbiPromo'); sessionStorage.setItem('hbiPromo', '1'); } catch (e) {}
+  if (seen || signedUp || !modal.hidden) return;
+  openModal({
+    emoji: '💔', title: 'Psst… heartbroken yet?',
+    text: 'Join today and your cover starts straight away. The ice cream is already waiting.',
+    actions: [{ label: 'Join now', href: '#join' }]
+  });
+}, 8000);
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
